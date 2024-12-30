@@ -222,7 +222,7 @@
         <p>&copy; 2024 Kedai Biskut Sin Swee Fatt | Designed with </p>
     </footer>
     <script>
-       function toggleContactOptions() {
+            function toggleContactOptions() {
     const options = document.getElementById('contact-options');
     if (options.style.display === 'block') {
         options.style.display = 'none';
@@ -230,6 +230,17 @@
         options.style.display = 'block';
 
         // Add a one-time event listener to the document to close the menu on outside click
+        document.addEventListener('click', closeContactOptions, { once: true });
+    }
+}
+
+function closeContactOptions(event) {
+    const options = document.getElementById('contact-options');
+    const button = document.querySelector('.contact-btn');
+    if (!options.contains(event.target) && event.target !== button) {
+        options.style.display = 'none';
+    } else {
+        // Re-add the event listener if the click was on the menu or button
         document.addEventListener('click', closeContactOptions, { once: true });
     }
 }
