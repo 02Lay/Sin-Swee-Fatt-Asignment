@@ -79,8 +79,8 @@
 
       .slider {
             position: relative;
-            max-width: 60%;
-            height: 500px;
+            max-width: 45%;
+            height: 530px;
             margin: auto;
             overflow: hidden;
             background-color: #ddd;
@@ -102,6 +102,10 @@
             opacity: 1; /* Show the first image initially */
         }
 
+        .slides video {
+            width: 100%;
+            height: auto;
+        }
 
         .navigation {
             position: absolute;
@@ -185,6 +189,9 @@
             <img src="WhatsApp 图像2024-12-03于19.04.35_08d5592c.jpg" alt="Image 3">
             <img src="WhatsApp 图像2024-12-03于19.04.15_cf0c7292.jpg" alt="Image 4">
             <img src="WhatsApp 图像2024-12-03于19.02.45_b9c10657.jpg" alt="Image 5">
+            <video controls style="opacity: 0; transition: opacity 1s ease-in-out;">
+               <source src="footage.mp4" type="video/mp4">
+            </video>
         </div>
         <div class="navigation">
             <button class="nav-btn" id="prev">❮</button>
@@ -227,41 +234,45 @@
     }
 }
 
-function closeContactOptions(event) {
-    const options = document.getElementById('contact-options');
-    const button = document.querySelector('.contact-btn');
-    if (!options.contains(event.target) && event.target !== button) {
-        options.style.display = 'none';
-    } else {
-        // Re-add the event listener if the click was on the menu or button
-        document.addEventListener('click', closeContactOptions, { once: true });
-    }
+const slides = document.querySelectorAll('.slides img, .slides video');
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
+let currentIndex = 0;
+
+function showSlide(index) {
+    slides.forEach((slide, i) => {
+        const isActive = i === index;
+
+        slide.classList.toggle('active', isActive);
+        slide.style.opacity = isActive ? '1' : '0';
+
+        // Pause video and hide controls for inactive slides
+        if (slide.tagName === 'VIDEO') {
+            if (isActive) {
+                slide.play();
+                slide.controls = true;
+            } else {
+                slide.pause();
+                slide.controls = false;
+            }
+        }
+    });
 }
 
- const slides = document.querySelectorAll('.slides img');
-        const prevBtn = document.getElementById('prev');
-        const nextBtn = document.getElementById('next');
-        let currentIndex = 0;
+// Next button click event
+nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+});
 
-        function showSlide(index) {
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === index);
-                slide.style.opacity = i === index ? '1' : '0'; // Update opacity directly
-            });
-        }
+// Previous button click event
+prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    showSlide(currentIndex);
+});
 
-        nextBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex + 1) % slides.length; // Go to the next image
-            showSlide(currentIndex);
-        });
-
-        prevBtn.addEventListener('click', () => {
-            currentIndex = (currentIndex - 1 + slides.length) % slides.length; // Go to the previous image
-            showSlide(currentIndex);
-        });
-
-        // Initialize the slider
-        showSlide(currentIndex);
+// Initialize the slider
+showSlide(currentIndex);
     </script>
 </body>
 </html>
