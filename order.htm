@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kedai Biskut Sin Swee Fatt</title>
+    <style>
+        body {
+            font-family: Comic Sans, Open Sans;
+            margin: 0;
+            padding: 0;
+            background-color: #F6F5E2;
+            color: #5A8167;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #5A8167;
+            color: #EED38D;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #EED38D;
+        }
+
+       .contact-btn {
+            font-family: Comic Sans, Open Sans;
+            font-size: 16px;
+            color: #EED38D;
+            background-color: #5A8167;
+            border: none;
+            cursor: pointer;
+            top: 20px;
+            right: 20px;
+            z-index: 500;
+        }
+        .contact-options {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 1000;
+        }
+        .option {
+            margin: 5px 0;
+        }
+        .option a {
+            color: #EED38D;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #5A8167;
+            border-radius: 5px;
+            display: block;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+        
+        .category {font-family: Comic Sans, Open Sans;
+            font-size: 30px;
+            padding: 5px
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .product {
+            text-align: center;
+            border: 3px solid #EED38D;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .product img {
+            width: 170px;
+            height: 170px;
+            border-radius: 8px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .close-btn, .add-cart-btn {
+            background: #ff5a5f;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .add-cart-btn {
+            background: #28a745;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #5A8167;
+            color: #EED38D;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="logo">Kedai Biskut Sin Swee Fatt</div>
+    <div lang="zh">新瑞发饼家</div>
+    <nav>
+        <a href="cart.htm">Cart</a>
+        <a href="index.htm">Home</a>
+        <a href="About Us.htm">About</a>
+        <a href="order.htm">Menu</a>
+        <button class="contact-btn" onclick="toggleContactOptions()">Contact</button>
+    <div id="contact-options" class="contact-options">
+        <div class="option">
+            <a href="https://wa.me/60192591288" target="_blank">Seremban Branch</a>
+        </div>
+        <div class="option">
+            <a href="https://wa.me/60192983111" target="_blank">Titi Branch</a>
+        </div>
+    </div>
+
+    </nav>
+</header>
+
+<div class="category">Steam Products</div>
+<div class="category" lang="zh">清蒸系列</div>
+<div class="product-grid">
+    <!-- Example Products -->
+    <div class="product" onclick="openModal('Big Bun', 6.50)">
+        <img src="big pau.png" alt="Big Bun">
+        <p lang="zh"><b>怀旧大包</b></p>
+        <p><b>Big Bun</b></p>
+        <p><b>RM 6.50</b></p>
+    </div>
+    <div class="product" onclick="openModal('Rice Wine Chicken Bun', 4.00)">
+        <img src="rice wine.jpg" alt="Rice Wine Chicken Bun">
+        <p lang="zh"><b>黄酒鸡包</b></p>
+        <p><b>Rice Wine Chicken Bun</b></p>
+        <p><b>RM 4.00</b></p>
+    </div>
+    <div class="product" onclick="openModal('Black Pepper Chicken Bun', 3.50)">
+        <img src="Black pepper.jpg" alt="Black Pepper Chicken Bun">
+        <p lang="zh"><b>蒙古鸡包</b></p>
+        <p><b>Black Pepper Chicken Bun</b></p>
+        <p><b>RM 3.50</b></p>
+    </div>
+    <div class="product" onclick="openModal('Char Siew Bun', 3.00)">
+        <img src="char siew.jpg" alt="Char Siew Bun">
+        <p lang="zh"><b>叉烧包</b></p>
+        <p><b>Char Siew Bun</b></p>
+        <p><b>RM 3.00</b></p>
+    </div>
+    <div class="product" onclick="openModal('Sang Yok Bun', 3.00)">
+        <img src="sheng yok.jpg" alt="Sang Yok Bun">
+        <p lang="zh"><b>生肉包</b></p>
+        <p><b>Sang Yok Bun</b></p>
+        <p><b>RM 3.00</b></p>
+    </div>
+</div>
+<div class="product-grid">
+    <!-- Example Products -->
+    <div class="product" onclick="openModal('Vege & Egg Bun', 2.50)">
+        <img src="vege.jpg" alt="Vege & Egg Bun">
+        <p lang="zh"><b>菜包</b></p>
+        <p><b>Vege & Egg Bun</b></p>
+        <p><b>RM 2.70</b></p>
+    </div>
+    <div class="product" onclick="openModal('Petai Bun', 3.80)">
+        <img src="petai.jpg" alt="Petai Bun">
+        <p lang="zh"><b>香辣臭豆包</b></p>
+        <p><b>Petai Bun</b></p>
+        <p><b>RM 3.80</b></p>
+    </div>
+    <div class="product" onclick="openModal('Preserved Vege Bun', 3.00)">
+        <img src="preserve vege.jpg" alt="Preserved Vege Bun">
+        <p lang="zh"><b>梅菜包</b></p>
+        <p><b>Preserved Vege Bun</b></p>
+        <p><b>RM 3.00</b></p>
+    </div>
+    <div class="product" onclick="openModal('Red Bean Bun', 2.50)">
+        <img src="red bean.jpg" alt="Red Bean Bun">
+        <p lang="zh"><b>豆沙包</b></p>
+        <p><b>Red Bean Bun</b></p>
+        <p><b>RM 2.50</b></p>
+    </div>
+    <div class="product" onclick="openModal('Peanut Bun', 2.50)">
+        <img src="peanut.jpg" alt="Peanut Bun">
+        <p lang="zh"><b>花生包</b></p>
+        <p><b>Peanut Bun</b></p>
+        <p><b>RM 2.50</b></p>
+    </div>
+
+</div>
+<div class="product-grid">
+    <!-- Example Products -->
+    <div class="product" onclick="openModal('Butter Corn Bun', 2.50)">
+        <img src="butter corn.jpg" alt="Butter Corn Bun">
+        <p lang="zh"><b>玉米奶油包</b></p>
+        <p><b>Butter Corn Bun</b></p>
+        <p><b>RM 2.50</b></p>
+    </div>
+    <div class="product" onclick="openModal('Kaya Bun', 2.50)">
+        <img src="kaya.jpg" alt="Kaya Bun">
+        <p lang="zh"><b>加央包</b></p>
+        <p><b>Kaya Bun</b></p>
+        <p><b>RM 2.50</b></p>
+    </div>
+    <div class="product" onclick="openModal('Glutinous Rice', 5.50)">
+        <img src="nuo mmi ji.jpg" alt="Glutinous Rice">
+        <p lang="zh"><b>糯米鸡</b></p>
+        <p><b>Glutinous Rice</b></p>
+        <p><b>RM 5.50</b></p>
+    </div>
+
+</div>
+
+<div class="category">Baked Products</div>
+<div class="category" lang="zh">烘培系列</div>
+<div class="product-grid">
+    <!-- Example Products -->
+    <div class="product" onclick="openModal('Titi Siew Bao', 2.80)">
+        <img src="siew bao.jpg" alt="Titi Siew Bao">
+        <p lang="zh"><b>知知港烧包</b></p>
+        <p><b>Titi Siew Bao</b></p>
+        <p><b>RM 2.80</b></p>
+    </div>
+    <div class="product" onclick="openModal('Titi Siew Bao King', 5.50)">
+        <img src="siew bao king.jpg" alt="Titi Siew Bao King">
+        <p lang="zh"><b>知知港烧包皇</b></p>
+        <p><b>Titi Siew Bao King</b></p>
+        <p><b>RM 5.50</b></p>
+    </div>
+    <div class="product" onclick="openModal('Kaya Puff', 2.50)">
+        <img src="puff.jpeg" alt="Kaya Puff">
+        <p lang="zh"><b>加央角</b></p>
+        <p><b>Kaya Puff</b></p>
+        <p><b>RM 2.50</b></p>
+    </div>
+    <div class="product" onclick="openModal('Marble Cake', 15.00)">
+        <img src="marble cake.jpg" alt="Marble Cake">
+        <p lang="zh"><b>古早味牛油蛋糕</b></p>
+        <p><b>Marble Cake</b></p>
+        <p><b>RM 15.00</b></p>
+    </div>
+    <div class="product" onclick="openModal('Star Cake', 2.00)">
+        <img src="star cake.jpeg" alt="Star Cake">
+        <p lang="zh"><b>星星糕</b></p>
+        <p><b>Star Cake</b></p>
+        <p><b>RM 2.00</b></p>
+    </div>
+
+</div>
+<div class="product-grid">
+    <!-- Example Products -->
+    <div class="product" onclick="openModal('Red Bean Wedding Pastry', 3.80)">
+        <img src="dou sha.png" alt="Red Bean Wedding Pastry">
+        <p lang="zh"><b>豆沙礼饼</b></p>
+        <p><b>Red Bean Wedding Pastry</b></p>
+        <p><b>RM 3.80</b></p>
+    </div>
+    <div class="product" onclick="openModal('Mung Bean Wedding Pastry', 3.80)">
+        <img src="dou rong.jpeg" alt="Mung Bean Wedding Pastry">
+        <p lang="zh"><b>豆蓉礼饼</b></p>
+        <p><b>Mung Bean Wedding Pastry</b></p>
+        <p><b>RM 3.80</b></p>
+    </div>
+    <div class="product" onclick="openModal('Hup Toh Shu', 9.80)">
+        <img src="hup toh shu.jpg" alt="Hup Toh Shu">
+        <p lang="zh"><b>合桃酥（一包）</b></p>
+        <p><b>Hup Toh Shu(Per Pack)</b></p>
+        <p><b>RM 9.80</b></p>
+    </div>
+    <div class="product" onclick="openModal('Lotus Paste Pastry', 3.50)">
+        <img src="lian rong.jpg" alt="Lotus Paste Pastry">
+        <p lang="zh"><b>莲蓉饼</b></p>
+        <p><b>Lotus Paste Pastry</b></p>
+        <p><b>RM 3.50</b></p>
+    </div>
+
+</div>
+
+
+<div class="modal" id="productModal">
+    <div class="modal-content">
+        <h2 id="productName"></h2>
+        <p>Price: RM <span id="productPrice"></span></p>
+        <label>
+            Quantity:
+            <input type="number" id="quantity" value="1" min="1">
+        </label>
+        <br><br>
+        <label>
+            Temperature:
+            <select id="temperature">
+                <option value="hot">Hot</option>
+                <option value="cold">Cold</option>
+            </select>
+        </label>
+        <br><br>
+        <button class="add-cart-btn" onclick="addToCart()">Add to Cart</button>
+        <button class="close-btn" onclick="closeModal()">Close</button>
+    </div>
+</div>
+    <footer>
+        <p>&copy; 2024 Kedai Biskut Sin Swee Fatt | Designed with <3</p>
+    </footer>
+
+<script>
+     function toggleContactOptions() {
+    const options = document.getElementById('contact-options');
+    if (options.style.display === 'block') {
+        options.style.display = 'none';
+    } else {
+        options.style.display = 'block';
+
+        // Add a one-time event listener to the document to close the menu on outside click
+        document.addEventListener('click', closeContactOptions, { once: true });
+    }
+}
+
+function closeContactOptions(event) {
+    const options = document.getElementById('contact-options');
+    const button = document.querySelector('.contact-btn');
+    if (!options.contains(event.target) && event.target !== button) {
+        options.style.display = 'none';
+    } else {
+        // Re-add the event listener if the click was on the menu or button
+        document.addEventListener('click', closeContactOptions, { once: true });
+    }
+}
+
+    // Global cart array
+    const cart = [];
+
+    let currentProduct = {
+        name: "",
+        price: 0,
+        quantity: 1,
+        temperature: "hot"
+    };
+
+    function openModal(name, price) {
+        currentProduct.name = name;
+        currentProduct.price = price;
+        currentProduct.quantity = 1; // Default quantity
+        currentProduct.temperature = "hot"; // Default temperature
+
+        document.getElementById('productName').textContent = name;
+        document.getElementById('productPrice').textContent = price.toFixed(2);
+        document.getElementById('quantity').value = 1;
+        document.getElementById('temperature').value = "hot";
+
+        document.getElementById('productModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+    }
+
+function addToCart() {
+    const quantity = parseInt(document.getElementById('quantity').value);
+    const temperature = document.getElementById('temperature').value;
+
+    if (quantity < 1) {
+        alert("Please enter a valid quantity.");
+        return;
+    }
+
+    // Retrieve cart from LocalStorage or initialize it
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Check if the product already exists in the cart
+  const existingItem = cart.find((item) => item.name === currentProduct.name && item.temperature === temperature);
+
+if (existingItem) {
+  // Update the quantity of the existing item
+  existingItem.quantity += quantity;
+  existingItem.total = (existingItem.price * existingItem.quantity).toFixed(2);
+} else {
+  // Add the product as a new item
+  const productToAdd = {
+    name: currentProduct.name,
+    price: currentProduct.price,
+    quantity: quantity,
+    temperature: temperature,
+    total: (currentProduct.price * quantity).toFixed(2),
+  };
+  cart.push(productToAdd);
+}
+
+    const productToAdd = {
+        name: currentProduct.name,
+        price: currentProduct.price,
+        quantity: quantity,
+        temperature: temperature,
+        total: (currentProduct.price * quantity).toFixed(2)
+    };
+
+
+    // Save cart array back to LocalStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    console.log("Cart updated:", cart); // Debugging
+    alert(`${productToAdd.name} has been added to your cart.`);
+    closeModal();
+}
+
+</script>
+</body>
+</html>

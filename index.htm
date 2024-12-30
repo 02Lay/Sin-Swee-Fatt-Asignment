@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kedai Biskut Sin Swee Fatt</title>
+    <style>
+        body {
+            font-family: Comic Sans, Open Sans;
+            margin: 0;
+            padding: 0;
+            background-color: #F6F5E2;
+            color: #5A8167;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #5A8167;
+            color: #EED38D;
+        }
+
+        nav a {
+            margin: 0 10px;
+            font-family: Comic Sans, Open Sans;
+            text-decoration: none;
+            color: #EED38D;
+        }
+
+       .contact-btn {
+            font-family: Comic Sans, Open Sans;
+            font-size: 16px;
+            color: #EED38D;
+            background-color: #5A8167;
+            border: none;
+            cursor: pointer;
+            top: 20px;
+            right: 20px;
+            z-index: 500;
+        }
+        .contact-options {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 1000;
+        }
+        .option {
+            margin: 5px 0;
+        }
+        .option a {
+            color: #EED38D;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #5A8167;
+            border-radius: 5px;
+            display: block;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+       .intro {line-height: 0.8;
+            margin: 10px 0;
+            padding: 5px 5px;
+        }
+
+      .img_logo {
+            float: left;
+        }
+
+       .slider {
+            position: relative;
+            max-width: 50%;
+            height: 550px;
+            margin: auto;
+            overflow: hidden;
+            background-color: #ddd;
+        }
+
+        .slides img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slides img.active {
+            opacity: 1;
+        }
+
+        .slides img:first-child {
+            opacity: 1; /* Show the first image initially */
+        }
+
+        .navigation {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .nav-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #5A8167;
+            color: #EED38D;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Kedai Biskut Sin Swee Fatt</div>
+        <div lang="zh">新瑞发饼家</div>
+        <nav>
+            <a href="cart.htm">Cart</a>
+            <a href="index.htm">Home</a>
+            <a href="About Us.htm">About</button></a>
+            <a href="order.htm">Menu</a>
+            <button class="contact-btn" onclick="toggleContactOptions()">Contact</button>
+    <div id="contact-options" class="contact-options">
+        <div class="option">
+            <a href="https://wa.me/60192591288" target="_blank">Seremban Branch</a>
+        </div>
+        <div class="option">
+            <a href="https://wa.me/60192983111" target="_blank">Titi Branch</a>
+        </div>
+    </div>
+        </nav>
+    </header>
+       <div class="intro">
+    <img class="img_logo" src="FB_IMG_1675571269766.png" width="160px" height="160px">
+            <h1 lang="zh">欢迎光临新瑞发饼家</h1>
+            <h1>Welcome to Kedai Biskut Sin Swee Fatt</h1>
+            <p lang="zh">体验芙蓉最美味的传统包点!</p>
+            <p>Experience the finest traditional pastries in Seremban!</p>
+   </div>
+
+    <div class="slider">
+        <div class="slides">
+            <img src="big pau.png" alt="Image 1">
+            <img src="Black pepper.jpg" alt="Image 2">
+            <img src="butter corn.jpg" alt="Image 3">
+            <img src="char siew.jpg" alt="Image 4">
+            <img src="peanut.jpg" alt="Image 5">
+            <img src="petai.jpg" alt="Image 6">
+            <img src="preserve vege.jpg" alt="Image 7">
+            <img src="red bean.jpg" alt="Image 8">
+            <img src="rice wine.jpg" alt="Image 9">
+            <img src="sheng yok.jpg" alt="Image 10">
+            <img src="vege.jpg" alt="Image 11">
+            <img src="kaya.jpg" alt="Image 12">
+            <img src="dou sha.png" alt="Image 13">
+            <img src="marble cake.jpg" alt="Image 14">
+            <img src="lian rong.jpg" alt="Image 15">
+            <img src="hup toh shu.jpg" alt="Image 16">
+            <img src="siew bao.jpg" alt="Image 17">
+            <img src="siew bao king.jpg" alt="Image 18">
+            <img src="mooncake.jpg" alt="Image 19">
+        </div>
+        <div class="navigation">
+            <button class="nav-btn" id="prev">❮</button>
+            <button class="nav-btn" id="next">❯</button>
+        </div>
+    </div>
+    </main>
+    <div>
+&nbsp
+    </div>
+    <footer>
+        <p>&copy; 2024 Kedai Biskut Sin Swee Fatt | Designed with <3</p>
+    </footer>
+    <script>
+            function toggleContactOptions() {
+    const options = document.getElementById('contact-options');
+    if (options.style.display === 'block') {
+        options.style.display = 'none';
+    } else {
+        options.style.display = 'block';
+
+        // Add a one-time event listener to the document to close the menu on outside click
+        document.addEventListener('click', closeContactOptions, { once: true });
+    }
+}
+
+function closeContactOptions(event) {
+    const options = document.getElementById('contact-options');
+    const button = document.querySelector('.contact-btn');
+    if (!options.contains(event.target) && event.target !== button) {
+        options.style.display = 'none';
+    } else {
+        // Re-add the event listener if the click was on the menu or button
+        document.addEventListener('click', closeContactOptions, { once: true });
+    }
+}
+
+        const slides = document.querySelectorAll('.slides img');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length;
+            showSlide(currentIndex);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            showSlide(currentIndex);
+        });
+
+
+    </script>
+</body>
+</html>

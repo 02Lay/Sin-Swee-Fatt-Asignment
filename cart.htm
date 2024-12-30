@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+           body {
+            font-family: Comic Sans, Open Sans;
+            margin: 0;
+            padding: 0;
+            background-color: #F6F5E2;
+            color: #5A8167;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #5A8167;
+            color: #EED38D;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #EED38D;
+        }
+
+       .contact-btn {
+            font-family: Comic Sans, Open Sans;
+            font-size: 16px;
+            color: #EED38D;
+            background-color: #5A8167;
+            border: none;
+            cursor: pointer;
+            top: 20px;
+            right: 20px;
+            z-index: 500;
+        }
+        .contact-options {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 1000;
+        }
+        .option {
+            margin: 5px 0;
+        }
+        .option a {
+            color: #EED38D;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #5A8167;
+            border-radius: 5px;
+            display: block;
+            text-align: center;
+        } 
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #f4f4f4;
+        }
+    /* Add this CSS rule to alternate row colors */
+        tr:nth-child(even) { 
+            background-color: #eeedd2; /* Light gray */
+        }
+
+        .total {
+            font-weight: bold;
+            font-size: larger;
+            text-align: right;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .form-box {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+            max-width: 400px; /* Set box width */
+        }
+
+        .form-box h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input, .form-group select {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+       .payment-btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .container {
+              position: relative;
+              min-height: 10vh; 
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #5A8167;
+            color: #EED38D;
+        }
+    </style>
+</head>
+<header>
+        <div class="logo">Kedai Biskut Sin Swee Fatt</div>
+        <div lang="zh">新瑞发饼家</div>
+        <nav>
+            <a href="cart.htm">Cart</a>
+            <a href="index.htm">Home</a>
+            <a href="About Us.htm">About</button></a>
+            <a href="order.htm">Menu</a>
+            <button class="contact-btn" onclick="toggleContactOptions()">Contact</button>
+    <div id="contact-options" class="contact-options">
+       <div class="option">
+            <a href="https://wa.me/60192591288" target="_blank">Seremban Branch</a>
+        </div>
+        <div class="option">
+            <a href="https://wa.me/60192983111" target="_blank">Titi Branch</a>
+        </div>
+    </div>
+        </nav>
+ 
+    </header>
+<body>
+    <h1>Your Shopping Cart</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price (RM)</th>
+                <th>Quantity</th>
+                <th>Total (RM)</th>
+            </tr>
+        </thead>
+        <tbody id="cartItems"></tbody>
+    </table>
+    <div class="total" id="totalAmount"></div>
+
+    <div class="form-container">
+        <div class="form-box">
+            <h2>Delivery Information</h2>
+            <form id="checkoutForm">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Delivery Address:</label>
+                    <input type="text" id="address" name="address" required>
+                </div>
+                <div class="form-group">
+                    <label for="deliveryDate">Select Delivery Date:</label>
+                    <input type="date" id="deliveryDate" name="deliveryDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="payment">Payment Method:</label>
+                    <select id="payment" name="payment" required>
+                        <option value="">Select Payment Method</option>
+                        <option value="credit_card">Credit Card</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="bank_transfer">Bank Transfer</option>
+                        <option value="cash_on_delivery">Cash on Delivery</option>
+                    </select>
+                </div>
+                <button class="payment-btn" type="submit">Submit Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="container"></div>
+
+    <footer>
+        <p>&copy; 2024 Kedai Biskut Sin Swee Fatt | Designed with <3</p>
+    </footer>
+    <script>
+            function toggleContactOptions() {
+    const options = document.getElementById('contact-options');
+    if (options.style.display === 'block') {
+        options.style.display = 'none';
+    } else {
+        options.style.display = 'block';
+
+        // Add a one-time event listener to the document to close the menu on outside click
+        document.addEventListener('click', closeContactOptions, { once: true });
+    }
+}
+
+function closeContactOptions(event) {
+    const options = document.getElementById('contact-options');
+    const button = document.querySelector('.contact-btn');
+    if (!options.contains(event.target) && event.target !== button) {
+        options.style.display = 'none';
+    } else {
+        // Re-add the event listener if the click was on the menu or button
+        document.addEventListener('click', closeContactOptions, { once: true });
+    }
+}
+
+        function loadCart() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || []; // Retrieve cart from LocalStorage
+    const cartItems = document.getElementById('cartItems'); // Target tbody
+    const totalAmount = document.getElementById('totalAmount'); // Target total amount display
+    let total = 0;
+
+    cartItems.innerHTML = ''; // Clear existing rows
+
+    if (cart.length === 0) {
+        cartItems.innerHTML = `<tr><td colspan="4">Your cart is empty.</td></tr>`;
+        totalAmount.textContent = "Total Amount: RM 0.00";
+        return;
+    }
+
+    // Loop through cart items and put into table
+    cart.forEach((item, index) => {
+        const row = `
+            <tr>
+                <td>${item.name} (${item.temperature})</td>
+                <td>${item.price.toFixed(2)}</td>
+                <td>${item.quantity}</td>
+                <td>${item.total}</td>
+                 <td><button class="delete-btn" data-index="${index}">Delete</button></td>
+            </tr>
+        `;
+        cartItems.innerHTML += row;
+        total += parseFloat(item.total); // Calculate total
+    });
+
+    totalAmount.textContent = `Total Amount: RM ${total.toFixed(2)}`; // Display total
+
+    const deleteButtons = document.querySelectorAll('.delete-btn');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', deleteCartItem);
+        });
+}
+
+// Call loadCart when the page loads
+window.onload = loadCart;
+
+
+      document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Collect form data
+    const formData = {
+        name: document.getElementById('name').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        address: document.getElementById('address').value,
+        deliveryDate: document.getElementById('deliveryDate').value,
+        payment: document.getElementById('payment').value,
+        cart: JSON.parse(localStorage.getItem('cart')) || [], // Retrieve cart details
+        total: calculateTotalAmount(), // Call function to get the total amount
+    };
+
+    // Save data to localStorage
+    localStorage.setItem('orderDetails', JSON.stringify(formData));
+
+    // Redirect to paynet FPX homepage because we don't have API access HAHAHA
+    window.location.href = 'https://paynet.my/';
+
+     /* // Initiate FPX payment using the library
+  const paymentGateway = new YourPaymentGateway(YOUR_API_KEY);
+  paymentGateway.initiateFPXPayment({
+    amount: formData.total, // Total amount from your calculation
+    customerName: formData.name,
+    customerEmail: formData.email,
+    // ... other required parameters based on the provider
+  }).then(function(response) {
+    // Handle successful payment initiation
+    // Redirect user to FPX payment page based on response
+    window.location.href = response.paymentUrl;
+  }).catch(function(error) {
+    // Handle payment errors
+    console.error(error);
+    alert("Payment failed. Please try again.");
+  });
+
+*/
+});
+
+function deleteCartItem(event) {
+        const index = event.target.getAttribute('data-index');
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        cart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCart();
+    }
+
+function calculateTotalAmount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    let total = 0;
+    cart.forEach(item => {
+        total += item.price * item.quantity;
+    });
+    return total.toFixed(2);
+}
+    </script>
+</body>
+</html>

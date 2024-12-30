@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kedai Biskut Sin Swee Fatt</title>
+    <style>
+        body {
+            font-family: Comic Sans, open sans;
+            margin: 0;
+            padding: 0;
+            background-color: #F6F5E2;
+            color: #5A8167;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #5A8167;
+            color: #EED38D;
+        }
+
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #EED38D;
+        }
+
+       .contact-btn {
+            font-family: Comic Sans, Open Sans;
+            font-size: 16px;
+            color: #EED38D;
+            background-color: #5A8167;
+            border: none;
+            cursor: pointer;
+            top: 20px;
+            right: 20px;
+            z-index: 500;
+        }
+        .contact-options {
+            display: none;
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            z-index: 1000;
+        }
+        .option {
+            margin: 5px 0;
+
+        }
+        .option a {
+            color: #EED38D;
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: #5A8167;
+            border-radius: 5px;
+            display: block;
+            text-align: center;
+        }
+
+       .intro {
+            text-align: left;
+            font-family: Comic Sans, open sans;
+            margin: 13px;
+            padding: 5px 5px;
+            line-height: 0.5;
+        }
+
+      .img_logo {
+            float: left;
+        }
+
+      .slider {
+            position: relative;
+            max-width: 60%;
+            height: 500px;
+            margin: auto;
+            overflow: hidden;
+            background-color: #ddd;
+        }
+
+        .slides img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slides img.active {
+            opacity: 1;
+        }
+
+        .slides img:first-child {
+            opacity: 1; /* Show the first image initially */
+        }
+
+
+        .navigation {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .nav-btn {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 10px;
+        }
+        .product {
+            text-align: left;
+            border: 0px solid #EED38D;
+            padding: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 0.8;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #5A8167;
+            color: #EED38D;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Kedai Biskut Sin Swee Fatt</div>
+        <div lang="zh">新瑞发饼家</div>
+        <nav>
+            <a href="cart.htm">Cart</a>
+            <a href="index.htm">Home</a>
+            <a href="About Us.htm">About</button></a>
+            <a href="order.htm">Menu</a>
+            <button class="contact-btn" onclick="toggleContactOptions()">Contact</button>
+    <div id="contact-options" class="contact-options">
+        <div class="option">
+            <a href="https://wa.me/60192591288" target="_blank">Seremban Branch</a>
+        </div>
+        <div class="option">
+            <a href="https://wa.me/60192983111" target="_blank">Titi Branch</a>
+        </div>
+    </div>
+        </nav>
+    </header>
+    <div class="intro">
+            <h1>About Us</h1>
+            <h2>The story of the famous pre-war bakery "Pin Xiang Chuan"</h2>
+            <p style="text-align: justify; font-size: 17px; line-height: 1.5">Before the war, when people in Jelebu talked about the three words "Pin Xiang Chuan", they all praised its steamed dumplings, dim sum, wedding pastries and other snacks. It was founded by the founder of the town, Madam Zhan Huan and her husband Mr.Lee, and was next to Wanlicheng General Store.</p>
+            <p style="text-align: justify; font-size: 17px; line-height: 1.5">Due to a fire, the entire row of the old shops was burned down. Later, it moved to Jelebu main street for business. Its descendants, Mr Lee Pei Sen, and his wife Madam Zhu Dong Mei, Mr. Lee Pei Jin and Mr. and Mrs. Yap, opened Xinchengli and Xinjinli coffee shop in Titi.</p>
+            <p style="text-align: justify; font-size: 17px; line-height: 1.5">In the 1970s, it was passed to the third generation, Mr. Lee Chang Jiang, Mr. Lee Wen Rui, Mr. Lee Qing Guang, Mr. Lee Yun Guang and Mr. Lee Sheng Guang, who opened Wenrui Restaurant, Ruifa coffee shop and Sin Swee Fatt Bakery. By the fourth generation, the family's steamed buns, wedding pastries, kaya puffs, siew bao, star cakes and others were famous far and wide. All tourists who came to Titi would come to visit. By the fifth generation, the bakery bussiness moved to Seremban.</p> 
+            <p style="text-align: justify; font-size: 17px; line-height: 1.5">The person in the left side of the photo is Madam Lee, also known as Madam Jenn. She is the fourth generation of the bakery and has been running Sin Swee Fatt with her father since she was a child. She started helping her family make steamed buns, wedding pastries, mooncakes and others when she was in primary school, and it has been more than 50 years.</P>
+            <p style="text-align: justify; font-size: 17px; line-height: 1.5">Madam Lee, who has been influenced by her family since she was a child, adheress to very strict standards from the selection of ingredients to the production process and does not accept any mistakes. There's one time, they overcooked the redbean paste and she could not accept it and cook it all over again which the cooking process was very laborious and time consuming. Madam Lee's persistence in the ingredients earn the respect from her customers.</p>
+            <p style="text-align: justify; font-size: 17px; line-height: 1.5">With the persistence of the Lee family, the quality and taste of their delicacy manage to passed down from generation to generation. Many people enjoy this authentic old-fashion taste from then to now.</p>
+        </section>
+   </div>
+
+    <div class="slider">
+        <div class="slides">
+            <img src="WhatsApp 图像2024-12-03于19.04.35_f5a05c3e.jpg" alt="Image 1">
+            <img src="WhatsApp 图像2024-12-03于19.00.48_05324c56.jpg" alt="Image 2">
+            <img src="WhatsApp 图像2024-12-03于19.04.35_08d5592c.jpg" alt="Image 3">
+            <img src="WhatsApp 图像2024-12-03于19.04.15_cf0c7292.jpg" alt="Image 4">
+            <img src="WhatsApp 图像2024-12-03于19.02.45_b9c10657.jpg" alt="Image 5">
+        </div>
+        <div class="navigation">
+            <button class="nav-btn" id="prev">❮</button>
+            <button class="nav-btn" id="next">❯</button>
+        </div>
+    </div>
+    <div class="product-grid">
+    <!-- Example Products -->
+    <div class="product">
+        <h2 lang="zh">芙蓉分行</h2>
+        <h2>Seremban Branch</h2>
+        <p lang="zh">营业时间是星期二至星期日，早上9点到下午4点30分</p>
+        <p>Operating hours are Tuesday to Sunday, 9a.m.-4:30p.m.</p> 
+        <p>Address: 2, Jalan KS 1, Kepayang Sentral, 70200 Seremban, Negeri Sembilan</p> 
+    </div>
+    <div class="product">
+        <h2 lang="zh">知知港总行</h2>
+        <h2>Titi Branch</h2>
+        <p lang="zh">营业时间是星期六，星期日和公共假期，早上9点到下午4点</p>
+        <p>Operating hours are Saturday, Sunday and Public holiday, 9a.m.-4p.m.</p>
+        <p>Address: 142, Jalan Besar, 71650 Titi, Negeri Sembilan</p> 
+    </div>
+
+</div>
+
+        </section>
+    <footer>
+        <p>&copy; 2024 Kedai Biskut Sin Swee Fatt | Designed with </p>
+    </footer>
+    <script>
+       function toggleContactOptions() {
+    const options = document.getElementById('contact-options');
+    if (options.style.display === 'block') {
+        options.style.display = 'none';
+    } else {
+        options.style.display = 'block';
+
+        // Add a one-time event listener to the document to close the menu on outside click
+        document.addEventListener('click', closeContactOptions, { once: true });
+    }
+}
+
+function closeContactOptions(event) {
+    const options = document.getElementById('contact-options');
+    const button = document.querySelector('.contact-btn');
+    if (!options.contains(event.target) && event.target !== button) {
+        options.style.display = 'none';
+    } else {
+        // Re-add the event listener if the click was on the menu or button
+        document.addEventListener('click', closeContactOptions, { once: true });
+    }
+}
+
+ const slides = document.querySelectorAll('.slides img');
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+        let currentIndex = 0;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+                slide.style.opacity = i === index ? '1' : '0'; // Update opacity directly
+            });
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % slides.length; // Go to the next image
+            showSlide(currentIndex);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length; // Go to the previous image
+            showSlide(currentIndex);
+        });
+
+        // Initialize the slider
+        showSlide(currentIndex);
+    </script>
+</body>
+</html>
